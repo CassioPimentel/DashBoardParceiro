@@ -1,5 +1,3 @@
-using System;
-
 namespace DashboardParceiro.Models
 {
     public class ErrorViewModel

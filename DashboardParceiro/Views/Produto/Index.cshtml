@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                Produtos
+            </div>
+            <br>
+            @Html.ActionLink("Adicionar Produto", "Index", "Produto", null, new { @class = "btn btn-primary btn-large col-md-2" })
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="Itens">
+                        <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Nome</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Medida</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="text-nowrap">Samsung Galaxy S8</td>
+                                <td>31,589</td>
+                                <td>$800</td>
+                                <td>5%</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

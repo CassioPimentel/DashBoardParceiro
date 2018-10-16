@@ -1,0 +1,107 @@
+﻿@model List<DashboardParceiro.Models.Cadastros.Categoria>
+
+@{
+    ViewData["Title"] = "Categoria";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                Categorias
+            </div>
+            <br>
+            @Html.ActionLink("Adicionar Categoria", "", "", null, new { @class = "btn btn-primary btn-large col-md-2", @id = "AddCategoria" })
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="Itens">
+                        <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Descrição</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td> @item.Codigo </td>
+                                    <td> @item.Descricao </td>
+                                    <td>
+
+                                        <button class="edit-modal btn btn-success"
+                                                data-info="">
+                                            <span class="glyphicon glyphicon-edit"></span> Editar
+                                        </button>
+                                        <button class="delete-modal btn btn-danger"
+                                                data-info="
+                                            ">
+                                            <span class="glyphicon glyphicon-trash"></span> Deletar
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" data-id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+</div>
+
+@section scripts
+    {
+    <script>
+    $(document).ready(function () {
+
+        //  $("#Itens").DataTable({
+        //        "language": {
+        //            "sEmptyTable": "Nenhum registro encontrado",
+        //            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        //            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+        //            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+        //            "sInfoPostFix": "",
+        //            "sInfoThousands": ".",
+        //            "sLengthMenu": "_MENU_ resultados por página",
+        //            "sLoadingRecords": "Carregando...",
+        //            "sProcessing": "Processando...",
+        //            "sZeroRecords": "Nenhum registro encontrado",
+        //            "sSearch": "Pesquisar",
+        //            "oPaginate": {
+        //                "sNext": "Próximo",
+        //                "sPrevious": "Anterior",
+        //                "sFirst": "Primeiro",
+        //                "sLast": "Último"
+        //            },
+        //            "oAria": {
+        //                "sSortAscending": ": Ordenar colunas de forma ascendente",
+        //                "sSortDescending": ": Ordenar colunas de forma descendente"
+        //            },
+        //            "columns": [
+        //                { "data": "Ocorrencia" },
+        //                { "data": "Observacao" }
+        //            ]
+        //        }
+        //});
+
+        $('#AddCategoria').on('click', function () {
+            var NumeroOS = $(this).data('id');
+            $('#modalContent').load('/Categoria/AddCategoria', function () {
+                $('#myModal').modal('show');
+
+                $('form', this).submit(function () {
+                    console.log("sucesso adicionar ocorrencia");
+                });
+            });
+            return false;
+        });
+    });
+    </script>
+}
