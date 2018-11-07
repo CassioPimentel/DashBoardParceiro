@@ -23,6 +23,9 @@
     <!-- BEGIN CSS for this page -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
     <!-- END CSS for this page -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -181,9 +184,9 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                             <!-- item-->
-                            <div class="dropdown-item noti-title">
+                            @*<div class="dropdown-item noti-title">
                                 <h5 class="text-overflow"><small>Hello, admin</small> </h5>
-                            </div>
+                            </div>*@
 
                             <!-- item-->
                             <a href="pro-profile.html" class="dropdown-item notify-item">
@@ -237,12 +240,14 @@
                             <a href="#"><i class="fa fa-fw fa-table"></i> <span> Cadastros </span> <span class="menu-arrow"></span></a>
                             <ul class="list-unstyled">
                                 <li> @Html.ActionLink("Produtos", "Index", "Produto", null, null) </li>
-                                <li><a href="tables-datatable.html">Complementos</a></li>
-                                <li><a href="tables-basic.html">Observações</a></li>
+                                <li> @Html.ActionLink("Complementos", "Index", "Complemento", null, null) </li>
+                                <li> @Html.ActionLink("Observações", "Index", "Observacao", null, null) </li>
                                 <li> @Html.ActionLink("Categorias", "Index", "Categoria", null, null) </li>
-                                <li><a href="tables-basic.html">Tipos e Tamanhos</a></li>
+                                <li> @Html.ActionLink("Tipos de Produtos", "Index", "Tipo", null, null) </li>
+                                <li> @Html.ActionLink("Tamanho de Produtos", "Index", "Tamanho", null, null) </li>
                                 <li><a href="tables-datatable.html">Promoçoes</a></li>
                                 <li><a href="tables-datatable.html">Colaboradores</a></li>
+                                <li> @Html.ActionLink("Meus Dados", "Index", "Parceiro", null, null) </li>
                             </ul>
                         </li>
                     </ul>
@@ -309,44 +314,118 @@
     <!-- Counter-Up-->
     <script src="~/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
     <script src="~/plugins/counterup/jquery.counterup.min.js"></script>
-    @RenderSection("scripts", required: false)
-    @section scripts
-        {
-        <script>
-        $(document).ready(function () {
 
-            $("#Itens").DataTable({
-                "language": {
-                    "sEmptyTable": "Nenhum registro encontrado",
-                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ".",
-                    "sLengthMenu": "_MENU_ resultados por página",
-                    "sLoadingRecords": "Carregando...",
-                    "sProcessing": "Processando...",
-                    "sZeroRecords": "Nenhum registro encontrado",
-                    "sSearch": "Pesquisar",
-                    "oPaginate": {
-                        "sNext": "Próximo",
-                        "sPrevious": "Anterior",
-                        "sFirst": "Primeiro",
-                        "sLast": "Último"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Ordenar colunas de forma ascendente",
-                        "sSortDescending": ": Ordenar colunas de forma descendente"
-                    },
-                    "columns": [
-                        { "data": "Ocorrencia" },
-                        { "data": "Observacao" }
-                    ]
-                }
-            });
+    <script src="~/js/bootstrap-notify.min.js"></script>
+
+    <script src="~/js/bootbox.min.js"></script>
+
+    <script src="~/plugins/select2/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
         });
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+    @if (TempData["Message"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                var message = @Html.Raw(TempData["Message"]);
+
+                console.log(message.CssClassName);
+
+                $.notify({
+                    // options
+                    title: message.Title,
+                    message: message.Message
+                    }, {
+                    // settings
+                    type: message.CssClassName,
+                    offset: 52,
+                    spacing: 10,
+                    z_index: 1040,
+                    delay: 2000
+                });
+            });
         </script>
     }
+
+    <script>
+        $(document).ready(function () {
+             $("#Itens").DataTable({
+                    "language": {
+                        "sEmptyTable": "Nenhum registro encontrado",
+                        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sInfoThousands": ".",
+                        "sLengthMenu": "_MENU_ resultados por página",
+                        "sLoadingRecords": "Carregando...",
+                        "sProcessing": "Processando...",
+                        "sZeroRecords": "Nenhum registro encontrado",
+                        "sSearch": "Pesquisar",
+                        "oPaginate": {
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior",
+                            "sFirst": "Primeiro",
+                            "sLast": "Último"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Ordenar colunas de forma ascendente",
+                            "sSortDescending": ": Ordenar colunas de forma descendente"
+                        },
+                        "columns": [
+                            { "data": "Ocorrencia" },
+                            { "data": "Observacao" }
+                        ]
+                    }
+                });
+        });
+    </script>
+
+    @*@section scripts
+            {
+            <script>
+                $(document).ready(function () {
+
+
+
+                    $("#Itens").DataTable({
+                        "language": {
+                            "sEmptyTable": "Nenhum registro encontrado",
+                            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                            "sInfoPostFix": "",
+                            "sInfoThousands": ".",
+                            "sLengthMenu": "_MENU_ resultados por página",
+                            "sLoadingRecords": "Carregando...",
+                            "sProcessing": "Processando...",
+                            "sZeroRecords": "Nenhum registro encontrado",
+                            "sSearch": "Pesquisar",
+                            "oPaginate": {
+                                "sNext": "Próximo",
+                                "sPrevious": "Anterior",
+                                "sFirst": "Primeiro",
+                                "sLast": "Último"
+                            },
+                            "oAria": {
+                                "sSortAscending": ": Ordenar colunas de forma ascendente",
+                                "sSortDescending": ": Ordenar colunas de forma descendente"
+                            },
+                            "columns": [
+                                { "data": "Ocorrencia" },
+                                { "data": "Observacao" }
+                            ]
+                        }
+                    });
+                });
+            </script>
+        }*@
 
 
     @*<script>

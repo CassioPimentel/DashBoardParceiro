@@ -22,5 +22,20 @@ namespace DashboardParceiro.Service.Cadastros.CategoriaFolder
         {
             return _categoriaRepository.Save(categoria);
         }
+
+        public int Excluir(int Id)
+        {
+            return _categoriaRepository.Excluir(Id);
+        }
+
+        public Categoria Get(int Id)
+        {
+            return _categoriaRepository.Get(Id);
+        }
+
+        public List<Categoria> GetCategorias(int[] Ids)
+        {
+            return _categoriaRepository.GetCategorias(Ids);
+        }
     }
 }

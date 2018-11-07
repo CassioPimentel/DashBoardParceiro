@@ -1,0 +1,52 @@
+﻿@model DashboardParceiro.Models.Cadastros.ModelBinding.ComplementoCategoriaBind
+
+@{
+    ViewData["Title"] = "Criar";
+}
+
+<div class="container-fluid">
+    <form asp-action="Save">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        Complemento
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label asp-for="Complemento.Descricao" class="control-label"></label>
+                                    <input asp-for="Complemento.Descricao" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="example3">
+                                        Selecione o Tipo:
+                                    </label>
+
+                                    <select asp-for="CategoriaIds" asp-items="Model.Categorias"  class="form-control"></select>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="submit" value="Salvar" class="btn btn-primary btn-large col-md-2" />
+                                    <input type="submit" value="Voltar" class="btn btn-large col-md-2" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

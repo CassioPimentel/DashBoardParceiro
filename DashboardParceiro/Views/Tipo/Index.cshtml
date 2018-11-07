@@ -1,0 +1,96 @@
+﻿@model List<DashboardParceiro.Models.Cadastros.Tipo>
+
+@{
+    ViewData["Title"] = "Tipos de produtos";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                Complementos
+            </div>
+            <br>
+            @Html.ActionLink("Adicionar Tipo", "Create", "Tipo", null, new { @class = "btn btn-primary btn-large col-md-2", @id = "AddCategoria" })
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="Itens">
+                        <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Descrição</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td> @item.Codigo </td>
+                                    <td> @item.Descricao </td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "Editar", new { Codigo = item.Codigo }, new { @class = "btn btn-success" })
+                                        <button class="delete-modal btn btn-danger" id="Excluir" data-id="@item.Codigo">
+                                            <span class="glyphicon glyphicon-trash"></span> Deletar
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $('#Itens').on('click', '#Excluir', function () {
+                var button = $(this);
+                var table = $("#Itens").DataTable();
+
+                id = button.attr("data-id");
+
+                bootbox.confirm({
+                    message: "<font size=5> <br> Deseja excluir este item? </br> </font>",
+                    buttons: {
+                        confirm: {
+                            label: 'Sim',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'Não',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+
+                            $.ajax({
+                                type: 'POST',
+                                data: { 'codigo': id },
+                                url: '/Tipo/Excluir/'
+                            }).done(function (response) {
+                                bootbox.alert("<font size=5> " + response.message + " </br> </font>")
+
+                                if (response.Title != 0) {
+                                    table.row(button.parents("tr")).remove().draw();
+                                } else {
+                                    return;
+                                }
+                            });
+
+                        } else {
+                            bootbox.hideAll();
+                            return false;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

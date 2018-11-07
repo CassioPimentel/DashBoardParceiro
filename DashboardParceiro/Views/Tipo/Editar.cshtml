@@ -1,0 +1,48 @@
+﻿@model DashboardParceiro.Models.Cadastros.Tipo
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<div class="container-fluid">
+    <form asp-action="Save">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        Complemento
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label asp-for="Complemento.Codigo" class="control-label"></label>
+                                    <input asp-for="Complemento.Codigo" class="form-control" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label asp-for="Complemento.Descricao" class="control-label"></label>
+                                    <input asp-for="Complemento.Descricao" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="submit" value="Salvar" class="btn btn-primary btn-large col-md-2" />
+                                    <input type="submit" value="Voltar" class="btn btn-large col-md-2" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

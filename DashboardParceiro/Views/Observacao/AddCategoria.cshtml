@@ -1,0 +1,43 @@
+﻿@model DashboardParceiro.Models.Cadastros.Observacao
+
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">Adicionar Categoria</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+</div>
+
+<div>
+    <div class="modal-body">
+        <form asp-controller="Observacao" asp-action="Save" method="post">
+            <div class="form-group">
+                <label asp-for="Descricao"></label>
+                <input asp-for="Descricao" class="form-control" />
+            </div>
+
+            <div class="modal-footer">
+                <input type="submit" id="Salvar" class="btn btn-primary" value="Salvar" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </form>          
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#Salvar").click(function () {
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(@Model),
+                url: '/Observacao/Save/'
+            }).done(function (response) {
+                if (response != 0) {
+                    alert('error');
+                    return;
+                } else {
+                    alert('item adicionado com sucesso');
+                    return;
+                }
+            });
+        });
+    });
+</script>

@@ -21,13 +21,12 @@ namespace DashboardParceiro.Models
         }
 
         public DbSet<Categoria> Categoria { get; set; }
-        //public DbSet<Observacao> Observacao { get; set; }
-        //public DbSet<ObservacaoCategoria> ObservacaoCategoria { get; set; }
-        //public DbSet<ParceiroModel> Parceiro { get; set; }
-        //public DbSet<Complemento> Complemento { get; set; }
-        //public DbSet<ComplementoCategoria> ComplementoCategoria { get; set; }
-        //public DbSet<Produto> Produto { get; set; }
-        //public DbSet<TaxaEntrega> TaxaEntrega { get; set; }
+        public DbSet<Observacao> Observacao { get; set; }
+        public DbSet<Tamanho> Tamanho { get; set; }
+        public DbSet<ParceiroModel> Parceiro { get; set; }
+        public DbSet<Complemento> Complemento { get; set; }
+        public DbSet<Tipo> Tipo { get; set; }
+        public DbSet<ComplementoCategoria> ComplementoCategoria { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
