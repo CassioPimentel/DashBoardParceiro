@@ -1,4 +1,5 @@
-﻿
+﻿@model List<DashboardParceiro.Models.Cadastros.Produto>
+
 @{
     ViewData["Title"] = "Produtos";
 }
@@ -25,14 +26,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach (var item in Model)
+                            {
                             <tr>
-                                <td>1</td>
-                                <td class="text-nowrap">Samsung Galaxy S8</td>
-                                <td>31,589</td>
-                                <td>$800</td>
-                                <td>5%</td>
-                                <td></td>
+                                <td> @item.Codigo </td>
+                                <td> @item.Descricao </td>
+                                <td> @item.Categoria.Descricao </td>
+                                <td> @item.PrecoVenda </td>
+                                <td> @item.MedidaID </td>
+                                <td>
+                                    @Html.ActionLink("Editar", "Editar", new { Codigo = item.Codigo }, new { @class = "btn btn-success" })
+                                    <button class="delete-modal btn btn-danger" id="Excluir" data-id="@item.Codigo">
+                                        <span class="glyphicon glyphicon-trash"></span> Deletar
+                                    </button>
+                                </td>
                             </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

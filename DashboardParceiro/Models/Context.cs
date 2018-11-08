@@ -25,6 +25,7 @@ namespace DashboardParceiro.Models
         public DbSet<Tamanho> Tamanho { get; set; }
         public DbSet<ParceiroModel> Parceiro { get; set; }
         public DbSet<Complemento> Complemento { get; set; }
+        public DbSet<Produto> Produto { get; set; }
         public DbSet<Tipo> Tipo { get; set; }
         public DbSet<ComplementoCategoria> ComplementoCategoria { get; set; }
 

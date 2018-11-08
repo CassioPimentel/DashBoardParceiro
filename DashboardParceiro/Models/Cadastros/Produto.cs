@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DashboardParceiro.Models.Cadastros
@@ -7,7 +8,9 @@ namespace DashboardParceiro.Models.Cadastros
     public class Produto
     {
         [Key]
-        public long Id { get; set; }
+        [Column("Id")]
+        [DisplayName("Codigo")]
+        public long Codigo { get; set; }
         public string Descricao { get; set; }
         public string CodPersonalizado { get; set; }
 
@@ -20,7 +23,9 @@ namespace DashboardParceiro.Models.Cadastros
 
         public string CaminhoImagem { get; set; }
 
+        [NotMapped]
         public virtual Categoria Categoria { get; set; }
+        [NotMapped]
         public virtual ParceiroModel Parceiro { get; set; }
     }
 }

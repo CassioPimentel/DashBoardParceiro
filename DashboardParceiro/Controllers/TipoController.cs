@@ -19,7 +19,7 @@ namespace DashboardParceiro.Controllers
         {
             var Tipo = _tipoService.GetAll();
 
-            if (Tamanho == null)
+            if (Tipo == null)
             {
                 return RedirectToAction("Error", "PageError");
             }

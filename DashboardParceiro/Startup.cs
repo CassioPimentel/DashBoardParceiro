@@ -19,6 +19,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DashboardParceiro.Repository.Cadastros.TamanhoFolder;
 using DashboardParceiro.Service.Cadastros.TamanhoFolder;
+using DashboardParceiro.Repository.Cadastros.ProdutoFolder;
+using DashboardParceiro.Service.Cadastros.ProdutoFolder;
 
 namespace DashboardParceiro
 {
@@ -56,6 +58,9 @@ namespace DashboardParceiro
 
             services.AddScoped<ITamanhoRepository, TamanhoRepository>();
             services.AddScoped<ITamanhoService, TamanhoService>();
+
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IProdutoService, ProdutoService>();
 
             services.AddMemoryCache();
             services.AddSession();
