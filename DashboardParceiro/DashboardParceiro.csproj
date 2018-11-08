@@ -30,6 +30,11 @@
     <None Include="Views\Shared\index.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\Cadastros\PromocaoFolder\" />
+    <Folder Include="Service\Cadastros\PromocaoFolder\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
