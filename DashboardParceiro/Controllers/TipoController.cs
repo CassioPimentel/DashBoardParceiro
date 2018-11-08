@@ -1,9 +1,7 @@
 ﻿using DashboardParceiro.Models;
 using DashboardParceiro.Models.Cadastros;
-using DashboardParceiro.Service.Cadastros.TamanhoFolder;
 using DashboardParceiro.Service.Cadastros.TipoFolder;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
 namespace DashboardParceiro.Controllers
@@ -20,6 +18,11 @@ namespace DashboardParceiro.Controllers
         public IActionResult Index()
         {
             var Tipo = _tipoService.GetAll();
+
+            if (Tamanho == null)
+            {
+                return RedirectToAction("Error", "PageError");
+            }
 
             return View(Tipo);
         }

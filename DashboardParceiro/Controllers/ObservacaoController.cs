@@ -19,6 +19,11 @@ namespace DashboardParceiro.Controllers
         {
             var Observacao = _observacaoService.GetAll();
 
+            if (Observacao == null)
+            {
+                return RedirectToAction("Error", "PageError");
+            }
+
             return View(Observacao);
         }
 

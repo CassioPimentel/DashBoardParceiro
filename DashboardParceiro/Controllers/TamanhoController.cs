@@ -23,6 +23,12 @@ namespace DashboardParceiro.Controllers
         public IActionResult Index()
         {
             var Tamanho = _tamanhoService.GetAll();
+
+            if (Tamanho == null)
+            {
+                return RedirectToAction("Error", "PageError");
+            }
+
             return View(Tamanho);
         }
 

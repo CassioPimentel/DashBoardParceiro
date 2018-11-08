@@ -28,6 +28,12 @@ namespace DashboardParceiro.Controllers
         public IActionResult Index()
         {
             var Complementos = _complementoService.GetAll();
+
+            if (Complementos == null)
+            {
+                return RedirectToAction("Error", "PageError");
+            }
+
             return View(Complementos);
         }
 

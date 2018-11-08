@@ -23,6 +23,11 @@ namespace DashboardParceiro.Controllers
         {
             var Categoria = _categoriaService.GetAll();
 
+            if (Categoria == null)
+            {
+                return RedirectToAction("Error", "PageError");
+            }
+
             return View(Categoria);
         }
 
