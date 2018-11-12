@@ -11,7 +11,7 @@
                 Produtos
             </div>
             <br>
-            @Html.ActionLink("Adicionar Produto", "Index", "Produto", null, new { @class = "btn btn-primary btn-large col-md-2" })
+            @Html.ActionLink("Adicionar Produto", "Create", "Produto", null, new { @class = "btn btn-primary btn-large col-md-2" })
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table" id="Itens">
@@ -19,7 +19,6 @@
                             <tr>
                                 <th>Codigo</th>
                                 <th>Nome</th>
-                                <th>Categoria</th>
                                 <th>Preço</th>
                                 <th>Medida</th>
                                 <th></th>
@@ -31,7 +30,6 @@
                             <tr>
                                 <td> @item.Codigo </td>
                                 <td> @item.Descricao </td>
-                                <td> @item.Categoria.Descricao </td>
                                 <td> @item.PrecoVenda </td>
                                 <td> @item.MedidaID </td>
                                 <td>

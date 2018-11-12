@@ -7,16 +7,13 @@ namespace DashboardParceiro.Models
     {
         public Context(DbContextOptions<Context> options) : base(options) { }
 
-        public Context()
-        {
-
-        }
+        public Context() { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("Server=MYSQL5011.site4now.net;Database=db_a40449_parc;Uid=a40449_parc;Pwd=Cassio_10");
+                optionsBuilder.UseMySql("Server=db4free.net;Database=dashboardparceir;Uid=cassiowin98;Pwd=eng1211048");
             }
         }
 
@@ -27,6 +24,7 @@ namespace DashboardParceiro.Models
         public DbSet<Complemento> Complemento { get; set; }
         public DbSet<Produto> Produto { get; set; }
         public DbSet<Tipo> Tipo { get; set; }
+        public DbSet<Medida> Medida { get; set; }
         public DbSet<ComplementoCategoria> ComplementoCategoria { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

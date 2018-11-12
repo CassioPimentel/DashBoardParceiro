@@ -44,5 +44,6 @@ namespace DashboardParceiro.Controllers
 
             return RedirectToAction("Index", "Parceiro");
         }
+
     }
 }
