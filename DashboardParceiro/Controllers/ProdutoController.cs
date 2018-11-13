@@ -32,6 +32,19 @@ namespace DashboardParceiro.Controllers
             return View(Produtos);
         }
 
+        public IActionResult Editar(int Codigo)
+        {
+            var Produto = _produtoService.Get(Codigo);
+
+            var Categorias = _categoriaService.GetAll();
+            Produto.Categorias = new SelectList(Categorias, "Codigo", "Descricao", Produto.CategoriaID);
+
+            var Medida = new Medida();
+            Produto.Medidas = new SelectList(Medida.GetAll(), "Codigo", "Descricao", Produto.MedidaID);
+
+            return View(Produto);
+        }
+
         public IActionResult Create()
         {
             var Produto = new Produto();

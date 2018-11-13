@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Categoria";
+    ViewData["Controler"] = "Categoria";
 }
 
 <div class="row">
@@ -44,7 +45,7 @@
     </div>
 </div>
 
-@section scripts
+@*@section scripts
     {
     <script>
         $(document).ready(function () {
@@ -69,11 +70,12 @@
                     },
                     callback: function (result) {
                         if (result) {
+                            var url = "/" + '@(ViewData["Title"])' + "/Excluir/";
 
                             $.ajax({
                                 type: 'POST',
                                 data: { 'codigo': id },
-                                url: '/Categoria/Excluir/'
+                                url: url
                             }).done(function (response) {
                                 bootbox.alert("<font size=5> " + response.message + " </br> </font>")
 
@@ -82,7 +84,6 @@
                                 } else {
                                     return;
                                 }
-
                             });
 
                         } else {
@@ -91,9 +92,7 @@
                         }
                     }
                 });
-
             });
-
         });
     </script>
-}
+}*@

@@ -2,13 +2,14 @@
 
 @{
     ViewData["Title"] = "Tipos de produtos";
+    ViewData["Controler"] = "Tipo";
 }
 
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header bg-light">
-                Complementos
+                Tipos
             </div>
             <br>
             @Html.ActionLink("Adicionar Tipo", "Create", "Tipo", null, new { @class = "btn btn-primary btn-large col-md-2", @id = "AddCategoria" })
@@ -44,53 +45,54 @@
     </div>
 </div>
 
-@section scripts
-{
-    <script>
-        $(document).ready(function () {
+@*
+    @section scripts
+    {
+        <script>
+            $(document).ready(function () {
 
-            $('#Itens').on('click', '#Excluir', function () {
-                var button = $(this);
-                var table = $("#Itens").DataTable();
+                $('#Itens').on('click', '#Excluir', function () {
+                    var button = $(this);
+                    var table = $("#Itens").DataTable();
 
-                id = button.attr("data-id");
+                    id = button.attr("data-id");
 
-                bootbox.confirm({
-                    message: "<font size=5> <br> Deseja excluir este item? </br> </font>",
-                    buttons: {
-                        confirm: {
-                            label: 'Sim',
-                            className: 'btn-success'
+                    bootbox.confirm({
+                        message: "<font size=5> <br> Deseja excluir este item? </br> </font>",
+                        buttons: {
+                            confirm: {
+                                label: 'Sim',
+                                className: 'btn-success'
+                            },
+                            cancel: {
+                                label: 'Não',
+                                className: 'btn-danger'
+                            }
                         },
-                        cancel: {
-                            label: 'Não',
-                            className: 'btn-danger'
+                        callback: function (result) {
+                            if (result) {
+
+                                $.ajax({
+                                    type: 'POST',
+                                    data: { 'codigo': id },
+                                    url: '/Tipo/Excluir/'
+                                }).done(function (response) {
+                                    bootbox.alert("<font size=5> " + response.message + " </br> </font>")
+
+                                    if (response.Title != 0) {
+                                        table.row(button.parents("tr")).remove().draw();
+                                    } else {
+                                        return;
+                                    }
+                                });
+
+                            } else {
+                                bootbox.hideAll();
+                                return false;
+                            }
                         }
-                    },
-                    callback: function (result) {
-                        if (result) {
-
-                            $.ajax({
-                                type: 'POST',
-                                data: { 'codigo': id },
-                                url: '/Tipo/Excluir/'
-                            }).done(function (response) {
-                                bootbox.alert("<font size=5> " + response.message + " </br> </font>")
-
-                                if (response.Title != 0) {
-                                    table.row(button.parents("tr")).remove().draw();
-                                } else {
-                                    return;
-                                }
-                            });
-
-                        } else {
-                            bootbox.hideAll();
-                            return false;
-                        }
-                    }
+                    });
                 });
             });
-        });
-    </script>
-}
+        </script>
+    }*@

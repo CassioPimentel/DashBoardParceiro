@@ -11,7 +11,7 @@ namespace DashboardParceiro.Models.Cadastros
         [Key]
         [Column("Id")]
         [DisplayName("Codigo")]
-        public long Codigo { get; set; }
+        public int Codigo { get; set; }
         [DisplayName("Nome")]
         public string Nome { get; set; }
         [DisplayName("Descrição")]

@@ -389,7 +389,51 @@
                             { "data": "Observacao" }
                         ]
                     }
+            });
+
+            $('#Itens').on('click', '#Excluir', function () {
+                var button = $(this);
+                var table = $("#Itens").DataTable();
+
+                id = button.attr("data-id");
+
+                bootbox.confirm({
+                    message: "<font size=5> <br> Deseja excluir este item? </br> </font>",
+                    buttons: {
+                        confirm: {
+                            label: 'Sim',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'Não',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            var url = "/" + '@(ViewData["Controler"])' + "/Excluir/";
+
+                            $.ajax({
+                                type: 'POST',
+                                data: { 'codigo': id },
+                                url: url
+                            }).done(function (response) {
+                                bootbox.alert("<font size=5> " + response.message + " </br> </font>")
+
+                                if (response.Title != 0) {
+                                    table.row(button.parents("tr")).remove().draw();
+                                } else {
+                                    return;
+                                }
+                            });
+
+                        } else {
+                            bootbox.hideAll();
+                            return false;
+                        }
+                    }
                 });
+            });
         });
     </script>
 
